@@ -1,0 +1,38 @@
+body {
+    background-color: #0c9bb9;
+  }
+
+  body header .navbar {
+    background-color: #fafafa;
+  }
+
+  body header .logo-img {
+    max-width: 10%;
+    height: auto;
+  }
+
+main {
+  padding-top: 1%;
+  padding-left: 10%;
+  padding-right: 1%;
+  padding-bottom: 1%;
+  float: right;
+  }
+
+h1{
+  color:#0c9bb9;
+  }
+
+h2{
+  color: #fafafa;
+  text-align: center;
+  }
+
+.card-title{
+  text-align: center;
+}
+
+.card-footer{
+  text-align: right;
+  text-decoration: underline;
+  }
