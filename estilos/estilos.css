@@ -17,11 +17,10 @@ body {
   }
 
 main {
-  padding-top: 1%;
-  padding-left: 10%;
-  padding-right: 1%;
-  padding-bottom: 1%;
+
   float: right;
+  max-width: 85%;
+  margin-bottom: 5%;
   }
 
 h1{
@@ -35,8 +34,7 @@ h2{
 
 .card{
   float: left;
-  margin-left: 1%;
-  margin-right: 1%;
+
   margin-top: 1%;
   width: 23vw;
 }
@@ -52,8 +50,13 @@ h2{
 .btnAgregar{
     float: left;
   }
+
+.claro{
+  color: #fafafa;
+  /* border-color: #fafafa; */
+}
+
 .categorias{
-  background-color: #fafafa;
   margin-left: 1%;
   margin-top: 1%;
   padding-left: 1%;
@@ -65,6 +68,17 @@ h2{
 }
 
 .hidden{
- /* visibility: hidden;*/
   display: none;
+}
+
+#btnCarrito{
+  background-color: transparent;
+  width: 35%;
+  height: auto;
+  float: right;
+  margin-top: 15%;
+}
+
+#spanCarro{
+  float: right;
 }

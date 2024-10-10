@@ -1,9 +1,12 @@
 const juegosContainer = document.getElementById("juegosContainer")
+const carrito = []
+
 
 let cuentaAcc = 0
 let cuentaAve = 0
 let cuentaDep = 0
 let cuentaAll = 0
+let cuentaCarro = 0
 
 listadoJuegos.forEach((elm) => {
 
@@ -13,14 +16,14 @@ listadoJuegos.forEach((elm) => {
 
     div.innerHTML = `
 
-    <img src="${elm.imagen}">
+    <img src="${elm.imagen}" id="pic">
     <div class="card-body">
-        <h5 class="card-title">${elm.nombre}</h5>
+        <h5 class="card-title" id="name">${elm.nombre}</h5>
         <p class="card-text categ" id="category">${elm.categoria}</p>
     </div>
     <div class="card-footer">
-        <small class="text-muted">$${elm.precio}</small>
-        <button class= "btnAgregar">Agregar al carrito</button>
+        <small class="text-muted" id="price">$${elm.precio}</small>
+        <button class= "btnAgregar" onClick="agregarCarrito()">Agregar al carrito</button>
 
     </div>
 
@@ -52,7 +55,6 @@ listadoJuegos.forEach((elm) => {
 
     juegosContainer.appendChild(div)
 })
-
 
 
     const boton = document.querySelectorAll(".btn");
@@ -89,3 +91,37 @@ listadoJuegos.forEach((elm) => {
       });
     });
      
+
+
+
+
+
+
+
+
+let botonAgregar = document.querySelector('.btnAgregar');
+botonAgregar.addEventListener('click', function() {
+//    let id = this.dataset.id;
+   // let nombre = nombre
+ 
+
+    let nombre = this.closest('.card').querySelector('#name').textContent; 
+
+
+    agregarCarrito(nombre, precio); 
+});
+
+
+
+//Agregar al carrito
+function agregarCarrito(nombre, precio) {
+
+
+    carrito.push(nombre, precio)
+    
+    cuentaCarro += 1;
+    document.getElementById("spanCarro").innerHTML = cuentaCarro;
+
+    console.log(carrito)
+
+}
