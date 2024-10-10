@@ -1,87 +1,91 @@
-alert("Bienvenidx a la plataforma de compra de videojuegos UncleDuck Games!")
+const juegosContainer = document.getElementById("juegosContainer")
 
-do{
-    usuario = prompt("Para continuar, por favor ingresa tu nombre")
-}
-while
-    (usuario == "")
-    
-const carrito = []
+let cuentaAcc = 0
+let cuentaAve = 0
+let cuentaDep = 0
+let cuentaAll = 0
 
-function vistaPreliminar(){
-    let total = 0
-    let mensaje
+listadoJuegos.forEach((elm) => {
 
-    for (let juego of carrito) {
-        mensaje = `Juego: ${juego.nombre}\nPrecio: $${juego.precio}\n`;
+    const div = document.createElement("div")
 
-        total += juego.precio
-    }
+    div.classList.add("card" )
 
-    alert(mensaje)
+    div.innerHTML = `
 
-    alert("El precio total del carrito es: $" + total)
-}
+    <img src="${elm.imagen}">
+    <div class="card-body">
+        <h5 class="card-title">${elm.nombre}</h5>
+        <p class="card-text categ" id="category">${elm.categoria}</p>
+    </div>
+    <div class="card-footer">
+        <small class="text-muted">$${elm.precio}</small>
+        <button class= "btnAgregar">Agregar al carrito</button>
 
+    </div>
 
-
-function coso() {
-    let opciones
-    
-    class Juego{
-        constructor(nombre, precio){
-            this.nombre = nombre
-            this.precio = parseInt(precio)
-        }
+    `
+    //Contabilizo los juegos para el span de categorías
+    if (elm.categoria.includes("Accion")) {
+        cuentaAcc += 1;
+        cuentaAll += 1;
+        document.getElementById("spanAcc").innerHTML = cuentaAcc;
+        document.getElementById("spanAll").innerHTML = cuentaAll;
         
     }
+    else if (elm.categoria.includes("Aventuras")) {
+        cuentaAve += 1;
+        cuentaAll += 1;
+        document.getElementById("spanAve").innerHTML = cuentaAve;
+        document.getElementById("spanAll").innerHTML = cuentaAll;
 
-    do{
-        opciones = prompt(`Seleccione el juego que desea comprar, para finalizar el proceso, escriba Terminar 
-                                        1- "Assetto Corsa" 
-                                        2- Days Gone 
-                                        3- EA FC 24 
-                                        4- Ghost of Tsushima 
-                                        5- God of War 
-                                        6- Grand Theft Auto V`).toLowerCase()
-        
-        console.log(opciones)
-
-        switch (opciones) {
-            case "1":
-                carrito.push(new Juego("Assetto Corsa", 2000))
-                break
-            case "2":
-                carrito.push(new Juego("Days Gone", 3000))
-                break
-             case "3":
-                carrito.push(new Juego("EA FC 24", 4000))
-                break   
-            case "4":
-                carrito.push(new Juego("Ghost of Tsushima", 5000))
-                break
-            case "5":
-                carrito.push(new Juego("God of War", 6000))
-                break
-            case "6":
-                carrito.push(new Juego("Grand Theft Auto V", 7000))
-                break
-            case "terminar":
-                break
-            default:
-                alert("No es un juego elegible")
-                break
-        }
-            
-
-        console.log(carrito)
-
-        vistaPreliminar()
-
-        }
-    while (opciones !== "terminar")
-
-    if (confirm("Desea confirmar la compra?")){
-        alert("Muchas gracias por su compra!")
     }
-}
+    else if (elm.categoria.includes("Deportes")) {
+        cuentaDep += 1;
+        cuentaAll += 1;
+        document.getElementById("spanDep").innerHTML = cuentaDep;
+        document.getElementById("spanAll").innerHTML = cuentaAll;
+
+    }
+
+ //   console.log(document.getElementById("juegosContainer").lenght )
+
+    juegosContainer.appendChild(div)
+})
+
+
+
+    const boton = document.querySelectorAll(".btn");
+    const cards = document.querySelectorAll(".card");
+    
+    //Todavía no filtra del todo bien, se debe buscar todos y despues se elige la categoría y así
+    function filter(catego) {
+        for (let i = 0; i < cards.length; i++) {
+          let card = cards[i];
+          let cardCategory = card.querySelector("#category"); 
+      
+          //Si es todos, no hay hidden
+          if (catego === "Todos") {
+            card.classList.remove("hidden");
+          } 
+          //Si coincide boton y categoría, muestro solo categoria
+          else if (cardCategory.innerHTML === catego) {
+            card.classList.add("card"); 
+          } else {
+            //Pongo hidden las que no coinciden
+            card.classList.add("hidden"); 
+          }
+          console.log(cardCategory);
+          console.log(catego);
+        //  console.log(cards)
+        }
+      }
+    
+    boton.forEach((boton) => {
+      boton.addEventListener("click", () => {     
+        const categoActual = boton.dataset.filter;
+        filter(categoActual);
+     //   console.log("categoActual " + categoActual);
+      });
+    });
+     

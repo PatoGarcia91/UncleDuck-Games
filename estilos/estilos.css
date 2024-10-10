@@ -11,6 +11,11 @@ body {
     height: auto;
   }
 
+  ol {
+    list-style-type: none;
+    background-color: #fafafa;
+  }
+
 main {
   padding-top: 1%;
   padding-left: 10%;
@@ -28,6 +33,13 @@ h2{
   text-align: center;
   }
 
+.card{
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 1%;
+  width: 23vw;
+}
 .card-title{
   text-align: center;
 }
@@ -36,3 +48,23 @@ h2{
   text-align: right;
   text-decoration: underline;
   }
+
+.btnAgregar{
+    float: left;
+  }
+.categorias{
+  background-color: #fafafa;
+  margin-left: 1%;
+  margin-top: 1%;
+  padding-left: 1%;
+  padding-top: 1%;
+
+}
+.categorias span{
+  float: inline-start;
+}
+
+.hidden{
+ /* visibility: hidden;*/
+  display: none;
+}

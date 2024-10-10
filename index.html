@@ -10,7 +10,9 @@
     <!--CSS-->
     <link rel="stylesheet" href="estilos/estilos.css">
     <!-- js -->
+    <script async src="js/juegos.js"></script>
     <script async src="js/main.js"></script>
+
     
 </head>
 <body>
@@ -27,15 +29,27 @@
     <!--F i n   H e a d e r-->
 
     <!-- aside -->
-    <aside>
+    <aside class="col col-2">
         <h3>Categorías</h3>
-        <ul>
-            <li>Acción</li>
-            <li>Aventuras</li>
-            <li>Deportes</li>
-        </ul>
-        <button onclick="coso()">Comprar</button>
 
+        <div class="btn-group-vertical categorias" role="group">
+            <div>
+                <button data-filter="Accion" class="btn">Acción</button>
+                <span class="badge bg-success rounded-pill" id="spanAcc"></span>
+            </div>
+            <div>
+                <button data-filter="Aventuras" class="btn">Aventuras</button>
+                <span class="badge bg-success rounded-pill" id="spanAve"></span>
+            </div>
+            <div>
+                <button data-filter="Deportes" class="btn">Deportes</button>
+                <span class="badge bg-success rounded-pill" id="spanDep"></span>
+            </div>
+            <div>
+                <button data-filter="Todos" class="btn">Todos</button>
+                <span class="badge bg-success rounded-pill" id="spanAll"></span>
+            </div>
+        </div>
 
     </aside>
     <!-- Fin aside -->
@@ -43,84 +57,11 @@
     <!-- main -->
         <main>
             <h2>Todos los juegos</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row">
                 <div class="col">
-                    <div class="card">
-                    <img src="images/portadas/assetto.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Assetto Corsa Competizione</h5>
-                        <p class="card-text">Deportes</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">$2000</small>
-                    </div>
-                    </div>
-                </div>
+                    <div class="col-10" id="juegosContainer">   
 
-                <div class="col">
-                    <div class="card">
-                    <img src="images/portadas/days.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Days Gone</h5>
-                        <p class="card-text">Acción, Aventuras</p>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">$3000</small>
-                    </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card">
-                    <img src="images/portadas/fc24.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">EA FC 24</h5>
-                        <p class="card-text">Deportes</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">$4000</small>
-                    </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card">
-                        <img src="images/portadas/got.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <h5 class="card-title">Ghost of Tsushima</h5>
-                        <p class="card-text">Acción, Aventuras</p>
-                        </div>
-                        <div class="card-footer">
-                        <small class="text-muted">$5000</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card">
-                    <img src="images/portadas/gow.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title">God of War</h5>
-                    <p class="card-text">Acción, Aventuras</p>
-                    </div>
-                    <div class="card-footer">
-                    <small class="text-muted">$6000</small>
-                    </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card">
-                    <img src="images/portadas/gta5.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title">Grand Theft Auto V</h5>
-                    <p class="card-text">Acción, Aventuras</p>
-                    </div>
-                    <div class="card-footer">
-                    <small class="text-muted">$7000</small>
-                    </div>
-                    </div>
-                </div>
                 </div>
             </div>
         </main>
