@@ -1,34 +1,42 @@
 const juegosContainer = document.getElementById("juegosContainer")
+const spanCateg = document.getElementsByTagName("span")
 const carrito = []
-
-
-let cuentaAcc = 0
-let cuentaAve = 0
-let cuentaDep = 0
-let cuentaAll = 0
+let precio = 0
+let precioTotal = 0
 let cuentaCarro = 0
 
-listadoJuegos.forEach((elm) => {
+//Genera el listado de juegos en pantalla
+  function muestroCategoria(juegos){
 
-    const div = document.createElement("div")
+    juegosContainer.innerHTML = ''
+    spanCateg.innerHTML = ''
 
-    div.classList.add("card" )
+    let cuentaAcc = 0
+    let cuentaAve = 0
+    let cuentaDep = 0
+    let cuentaAll = 0
 
-    div.innerHTML = `
+    juegos.forEach((elm) =>{
 
-    <img src="${elm.imagen}" id="pic">
-    <div class="card-body">
-        <h5 class="card-title" id="name">${elm.nombre}</h5>
-        <p class="card-text categ" id="category">${elm.categoria}</p>
-    </div>
-    <div class="card-footer">
-        <small class="text-muted" id="price">$${elm.precio}</small>
-        <button class= "btnAgregar" onClick="agregarCarrito()">Agregar al carrito</button>
+      const div = document.createElement("div")
 
-    </div>
+      div.classList.add("card" )
 
-    `
-    //Contabilizo los juegos para el span de categorías
+      div.innerHTML = `
+
+      <img src="${elm.imagen}" id="pic">
+      <div class="card-body">
+          <h5 class="card-title" id="name">${elm.nombre}</h5>
+          <p class="card-text categ" id="category">${elm.categoria}</p>
+      </div>
+      <div class="card-footer">
+          <small class="text-muted" id="price">$${elm.precio}</small>
+          <button class= "btnAgregar" id=${elm.id}  data-id =${elm.id}>Agregar al carrito</button>
+
+      </div>
+
+      `
+// Carga los spans numéricos de cada categoría
     if (elm.categoria.includes("Accion")) {
         cuentaAcc += 1;
         cuentaAll += 1;
@@ -51,77 +59,79 @@ listadoJuegos.forEach((elm) => {
 
     }
 
- //   console.log(document.getElementById("juegosContainer").lenght )
+      juegosContainer.appendChild(div)
 
-    juegosContainer.appendChild(div)
-})
+    }
+  )
 
+  }
 
-    const boton = document.querySelectorAll(".btn");
-    const cards = document.querySelectorAll(".card");
-    
-    //Todavía no filtra del todo bien, se debe buscar todos y despues se elige la categoría y así
-    function filter(catego) {
-        for (let i = 0; i < cards.length; i++) {
-          let card = cards[i];
-          let cardCategory = card.querySelector("#category"); 
-      
-          //Si es todos, no hay hidden
-          if (catego === "Todos") {
-            card.classList.remove("hidden");
-          } 
-          //Si coincide boton y categoría, muestro solo categoria
-          else if (cardCategory.innerHTML === catego) {
-            card.classList.add("card"); 
-          } else {
-            //Pongo hidden las que no coinciden
-            card.classList.add("hidden"); 
-          }
-          console.log(cardCategory);
-          console.log(catego);
-        //  console.log(cards)
-        }
-      }
-    
-    boton.forEach((boton) => {
-      boton.addEventListener("click", () => {     
-        const categoActual = boton.dataset.filter;
-        filter(categoActual);
-     //   console.log("categoActual " + categoActual);
-      });
+  muestroCategoria(listadoJuegos);
+
+  const btnCateg = document.getElementsByClassName('catego')
+
+  for (let boton of btnCateg) {
+
+    boton.addEventListener('click', filtroCategoria)
+  }
+
+  function filtroCategoria(e){
+
+    const id = e.target.dataset.id
+
+//Si elijo Todos, muestra el listado completo (por defecto), sino, solo la categoría asociada
+    if (id === 'todos'){
+      muestroCategoria(listadoJuegos);
+    }
+    else{
+      const juegosFiltrados = listadoJuegos.filter(p => p.categoria === id)
+      muestroCategoria(juegosFiltrados)
+    }
+
+  }
+
+  //Agregar al carrito - event listener
+  const botonAgregar = document.querySelectorAll('.btnAgregar');
+  botonAgregar.forEach(el => {
+    el.addEventListener('click', (e) =>{
+      agregarCarrito(e.target.id)
     });
-     
-
-
-
-
-
-
-
-
-let botonAgregar = document.querySelector('.btnAgregar');
-botonAgregar.addEventListener('click', function() {
-//    let id = this.dataset.id;
-   // let nombre = nombre
- 
-
-    let nombre = this.closest('.card').querySelector('#name').textContent; 
-
-
-    agregarCarrito(nombre, precio); 
-});
+  })
+  console.log(botonAgregar);
 
 
 
 //Agregar al carrito
-function agregarCarrito(nombre, precio) {
+  function agregarCarrito(id) {
 
+    const agregado = carrito.some(juego => juego.id === parseInt(id))
 
-    carrito.push(nombre, precio)
+    let juego = listadoJuegos.find(juego => juego.id === parseInt(id))
+
+    if (!agregado){
+
+      carrito.push(juego)
+      
+      carritoContainer.innerHTML = ''
+
+      carrito.forEach((elm) =>{
+
+        const div = document.createElement("div")
+
+        div.innerHTML = `
+          <p class="card-text categ" id="carroCateg">${elm.nombre}</p>
+          <small class="text-muted" id="carroPrecio">$${elm.precio}</small>
+        `
+        carritoContainer.appendChild(div)
+
+      }
+    )
+
+    }
+
+    precio = precio + parseInt(juego.precio)
+    document.getElementById("total").innerHTML = "Total: $"+precio
+    cuentaCarro = cuentaCarro + 1
+    document.getElementById("cantidad").innerHTML = "Cantidad: " + cuentaCarro
     
-    cuentaCarro += 1;
-    document.getElementById("spanCarro").innerHTML = cuentaCarro;
-
-    console.log(carrito)
-
-}
+  }

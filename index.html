@@ -29,35 +29,44 @@
     <!--F i n   H e a d e r-->
 
     <!-- aside -->
-    <aside class="col col-1">
+    <aside class="col col-2">
         <h3 class="claro">Categorías</h3>
 
         <div class="btn-group-vertical categorias" role="group">
             <div>
-                <button data-filter="Accion" class="btn claro">Acción</button>
+                <button id="btnAcc" class="btn claro catego" data-id ="Accion">Accion</button>
                 <span class="badge bg-success rounded-pill" id="spanAcc"></span>
             </div>
             <div>
-                <button data-filter="Aventuras" class="btn claro">Aventuras</button>
+                <button id="btnAve" class="btn claro catego" data-id ="Aventuras">Aventuras</button>
                 <span class="badge bg-success rounded-pill" id="spanAve"></span>
             </div>
             <div>
-                <button data-filter="Deportes" class="btn claro">Deportes</button>
+                <button id="btnDep" class="btn claro catego" data-id ="Deportes">Deportes</button>
                 <span class="badge bg-success rounded-pill" id="spanDep"></span>
             </div>
             <div>
-                <button data-filter="Todos" class="btn claro">Todos</button>
+                <button id="btnAll" class="btn claro catego" data-id ="todos">Todos</button>
                 <span class="badge bg-success rounded-pill" id="spanAll"></span>
             </div>
 
-
+<!-- 
             <div>
                 <input id="btnCarrito" type="image" src="images/logo/carrito.png" onclick=""/>
                 <span class="badge bg-success rounded-pill" id="spanCarro">0</span>
-            </div>
+            </div> -->
         </div>
 
+        <!-- Se renderiza el carrito a partir del evento agregarCarrito -->
+        <div class="claro carrito">
+            <h3 class="claro carrito">Carrito</h3>
+            <h4 class="claro carrito" id="cantidad"></h4>
+            <h4 class="claro carrito" id="total"></h4>
 
+            <div id="carritoContainer">
+                
+            </div>
+        </div>
 
     </aside>
 
