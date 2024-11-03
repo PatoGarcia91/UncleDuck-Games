@@ -145,3 +145,8 @@ h2{
 #carroVacio{
   width: 35%;
 }
+
+#portadaCarro{
+  width: 40%;
+  float: center;
+}
